@@ -74,9 +74,7 @@ public class TransactionManager {
      * 提交事务
      */
     public void commit(Transaction trx) {
-        System.out.println("Committing transaction " + trx.getTrxId());
         activeTrxIds.remove(trx.getTrxId());
-
     }
 
     /**
@@ -100,10 +98,8 @@ public class TransactionManager {
                 maxTrxId
         );
         System.out.println(
-                "为事务 T" + trx.getTrxId()
-                        + " 创建 ReadView: 活跃事务=" + mIds
-                        + ", minTrxId=" + minTrxId
-                        + ", maxTrxId=" + maxTrxId
+                "为事务 T%d 创建 ReadView: 活跃事务=%s, minTrxId=%d, maxTrxId=%d"
+                        .formatted(trx.getTrxId(), mIds, minTrxId, maxTrxId)
         );
         return readView;
     }
